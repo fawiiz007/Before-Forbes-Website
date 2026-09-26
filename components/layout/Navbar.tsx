@@ -20,7 +20,7 @@ export default function Navbar({ currentPage = "Home" }: { currentPage?: NavPage
       <div className="mx-auto flex h-[70px] max-w-7xl items-center justify-between px-5 sm:px-8 md:h-[84px] lg:px-10">
         <Link href="/" className="shrink-0">
           <img
-            src="/assets/logo-horizontal-gold.png"
+            src="/logo.png"
             alt="Before Forbes"
             className="h-10 w-auto md:h-[52px]"
           />
