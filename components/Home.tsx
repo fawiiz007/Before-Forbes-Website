@@ -16,6 +16,8 @@ import { useState, type FormEvent } from "react";
 import Navbar from "./layout/Navbar";
 import Footer from "./layout/Footer";
 
+const WAITLIST_URL = "https://docs.google.com/forms/d/e/1FAIpQLSf0AgU2jZW-5ZSKVYgOnUcU5QmNsVlcVUmscB53o0g0zIGeBg/viewform";
+
 const ASSETS = {
   logoHorizontal: "/logo.png", // Before Forbes primary logo
   logoMark: "/assets/logo-mark-gold.png", // standalone "B" mark, gold-on-transparent, used large in the hero
@@ -82,20 +84,25 @@ function Hero() {
   return (
     <section className="relative overflow-hidden bg-[#431F0F] py-16 md:py-28 lg:py-32">
       <PatternOverlay />
-      <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-5 sm:px-8 md:grid-cols-[1.15fr_0.85fr] md:gap-14 lg:px-10">
-        <div>
+      {/* 1. Kept justify-items-center for mobile/tablet. Shifted grid split from md: to lg: */}
+      <div className="relative mx-auto grid max-w-7xl grid-cols-1 justify-items-center items-center gap-10 px-5 sm:px-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14 lg:px-10">
+        
+        {/* 2. Shifted left-alignment rules from md: to lg: so iPads remain centered */}
+        <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
           <p className="mb-4 text-[13px] font-semibold uppercase tracking-[0.2em] text-[#C27E37]">
             Faith · Business · Legacy
           </p>
           <h1 className="text-[38px] font-bold leading-[1.1] text-[#F2B35B] sm:text-5xl md:text-6xl">
             Success, as the first generations understood it.
           </h1>
-          <p className="mt-6 max-w-lg text-base text-[#F2B35B]/90 sm:text-lg">
+          {/* 3. Shifted margin reset from md: to lg: to preserve text block centering */}
+          <p className="mt-6 max-w-lg mx-auto lg:mx-0 text-base text-[#FBF3E4]/80 sm:text-lg">
             Timeless principles for building wealth, leadership and legacy,
             drawn from the Prophet (PBUH), his Companions and the early
             Muslims.
           </p>
-          <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+          {/* 4. Keeps buttons side-by-side on tablet/desktop, stacked on small phones */}
+          <div className="mt-9 flex flex-col gap-4 w-full sm:w-auto sm:flex-row">
             <a
               href="/watch"
               className="rounded bg-[#F2B35B] px-8 py-3.5 text-center text-[15px] font-semibold text-[#431F0F] hover:bg-[#F2C372]"
@@ -103,7 +110,9 @@ function Hero() {
               Watch
             </a>
             <a
-              href="/#waitlist"
+              href={WAITLIST_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="rounded border border-[#F2B35B] px-8 py-3.5 text-center text-[15px] font-semibold text-[#F2B35B] hover:bg-[#F2B35B]/10"
             >
               Join the waitlist
@@ -124,6 +133,8 @@ function Hero() {
     </section>
   );
 }
+
+
 
 function OurStory() {
   return (
@@ -215,8 +226,7 @@ function BookAndWaitlist() {
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // TODO: wire up to your waitlist endpoint / email provider.
-    console.log("waitlist submission", form);
+    window.open(WAITLIST_URL, "_blank", "noopener,noreferrer");
   }
 
   return (

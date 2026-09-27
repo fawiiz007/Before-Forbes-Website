@@ -47,6 +47,8 @@ const SERIES = [
   description: "Short description of the series goes here.",
 }));
 
+const WAITLIST_URL = "https://docs.google.com/forms/d/e/1FAIpQLSf0AgU2jZW-5ZSKVYgOnUcU5QmNsVlcVUmscB53o0g0zIGeBg/viewform";
+
 function PlayIcon() {
   return (
     <span className="grid h-14 w-14 place-items-center rounded-full bg-[#F2B35B]">
@@ -198,7 +200,9 @@ function MoreComing() {
             </p>
           </div>
           <a
-            href="/#waitlist"
+            href={WAITLIST_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="w-full rounded bg-[#F2B35B] px-7 py-3.5 text-center text-[15px] font-semibold text-[#431F0F] hover:bg-[#F2C372] sm:w-auto"
           >
             Join the waitlist

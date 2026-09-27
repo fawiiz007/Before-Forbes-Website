@@ -12,12 +12,15 @@
 import { useState, type FormEvent } from "react";
 import Navbar from "./layout/Navbar";
 import Footer from "./layout/Footer";
+import Image from "next/image";
+import founderPhoto from "../public/assets/founderPhoto.jpg"; // import the founder photo
+import lanternIcon from "../public/assets/lanternIcon.png"; // import the lantern icon
 
 const ASSETS = {
-  logoHorizontal: "/logo.png", // primary Before Forbes logo
+  logoHorizontal: "/assets/logo-horizontal-gold.png", // wordmark + mark, gold-on-transparent, for dark backgrounds
   logoMark: "/assets/logo-mark-gold.png", // standalone "B" mark, gold-on-transparent
-  pattern: "/assets/brand-pattern.svg", // tileable geometric brand pattern
-  founderPhoto: "/assets/founder-photo.jpg", // portrait of the founder, Sadiya Mukhtar
+  pattern: "../public/assets/brand-pattern_1.png", // tileable geometric brand pattern
+  founderPhoto: "../public/assets/founderPhoto.jpg", // portrait of the founder, Sadiya Mukhtar
 };
 
 const NAV_LINKS = [
@@ -28,12 +31,12 @@ const NAV_LINKS = [
 ];
 
 const VALUES = [
-  "Tawhid-Centered Purpose",
-  "Excellence (Ihsan)",
-  "Authenticity",
-  "Knowledge Before Action",
-  "Integrity in Commerce",
-  "Legacy Over Luxury",
+  { number: "01", title: "Tawhid-Centered Purpose" },
+  { number: "02", title: "Excellence (Ihsan)" },
+  { number: "03", title: "Authenticity" },
+  { number: "04", title: "Knowledge Before Action" },
+  { number: "05", title: "Integrity in Commerce" },
+  { number: "06", title: "Legacy Over Luxury" },
 ];
 
 function PatternOverlay({ className = "" }: { className?: string }) {
@@ -62,7 +65,7 @@ function Hero() {
           <h1 className="text-[32px] font-bold leading-tight text-[#F2B35B] sm:text-4xl md:text-5xl">
             Before the Forbes lists, there were the caravans.
           </h1>
-          <p className="mt-6 text-base text-[#F2B35B]/90 sm:text-lg">
+          <p className="mt-6 text-base text-[#FBF3E4]/80 sm:text-lg">
             We teach business, wealth-building and leadership through Islamic
             history and Prophetic guidance.
           </p>
@@ -76,8 +79,8 @@ function VisionMission() {
   return (
     <section className="bg-[#F2B35B] py-16 md:py-24">
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 px-5 sm:px-8 md:grid-cols-2 md:gap-10 lg:px-10">
-        <div className="rounded-lg bg-white p-8 md:p-11">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-[#C27E37]">
+        <div className="rounded-lg p-8 md:p-11">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-[#431F0F]/80">
             Vision
           </p>
           <h3 className="text-xl font-semibold leading-snug text-[#431F0F] sm:text-2xl">
@@ -89,8 +92,8 @@ function VisionMission() {
             and build legacies for this world and the Hereafter.
           </p>
         </div>
-        <div className="rounded-lg bg-white p-8 md:p-11">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-[#C27E37]">
+        <div className="rounded-lg p-8 md:p-11">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-[#431F0F]/80">
             Mission
           </p>
           <h3 className="text-xl font-semibold leading-snug text-[#431F0F] sm:text-2xl">
@@ -107,27 +110,37 @@ function VisionMission() {
   );
 }
 
+function LanternPlaceholder() {
+  return (
+    <Image
+      src={lanternIcon}
+      alt=""
+      className="mx-auto h-20 w-20"
+      aria-hidden="true"
+      />
+  );
+}
+
 function Values() {
   return (
-    <section className="bg-[#FBF3E4] py-16 md:py-24">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-        <p className="mb-2 text-[13px] font-semibold uppercase tracking-[0.2em] text-[#C27E37]">
-          What we stand for
-        </p>
-        <h2 className="text-2xl font-bold text-[#431F0F] sm:text-3xl md:text-4xl">
-          Our values
-        </h2>
+    <section className="bg-[#F8F1E6] pt-15 pb-25 md:pt-15 md:pb-25">
+      <div className="mx-auto max-w-[1200px] px-5 sm:px-8 lg:px-10">
+        <div className="flex flex-col items-center justify-center">
+          <LanternPlaceholder />
+          <h2 className="mt-5 text-center font-sans-serif font-bold text-xl leading-none text-[#45291D] sm:text-2xl">
+            Our Values
+          </h2>
+        </div>
 
-        <div className="mt-9 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {VALUES.map((value, i) => (
-            <div
-              key={value}
-              className="flex items-center gap-4 rounded-md bg-[#431F0F] px-6 py-6 text-[#F2B35B]"
-            >
-              <span className="text-xs font-semibold tracking-[0.14em] text-[#C27E37]">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <h3 className="text-[17px] font-semibold">{value}</h3>
+        <div className="mx-auto mt-10 grid max-w-[1100px] grid-cols-1 gap-x-15 gap-y-15 sm:gap-y-9 md:grid-cols-3">
+          {VALUES.map((value) => (
+            <div key={value.number} className="text-center md:text-left">
+              <div className="mb-2 text-[16px] font-normal tracking-[0.02em] text-[#BB8A3D]">
+                {value.number}
+              </div>
+              <h3 className="font-sans-serif text-xl leading-[1.1] text-[#45291D] sm:text-2xl md:leading-[1.15]">
+                {value.title}
+              </h3>
             </div>
           ))}
         </div>
@@ -140,19 +153,16 @@ function Founder() {
   return (
     <section className="bg-[#F2C372] py-16 md:py-24">
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-5 sm:px-8 md:grid-cols-2 md:gap-16 lg:px-10">
-        <div className="aspect-[4/5] w-full overflow-hidden rounded-lg bg-gradient-to-br from-[#C27E37] to-[#F2C372]">
-          {/* PLACEHOLDER: founder photo — swap for <img src={ASSETS.founderPhoto} className="h-full w-full object-cover" alt="Sadiya Mukhtar" /> */}
-          <div className="grid h-full w-full place-items-center p-8 text-center text-sm font-medium text-[#431F0F]">
-            <div>
-              <img
-                src={ASSETS.logoMark}
+        <div className="aspect-[3/3] w-full overflow-hidden rounded-lg">
+          
+              <Image
+                src={founderPhoto}
                 alt=""
+                priority
+                style={{ objectFit: "cover", width: "auto", height: "100%" }}
                 aria-hidden="true"
-                className="mx-auto mb-3 w-16 opacity-70"
+                className="mx-auto mb-3 w-16"
               />
-              Founder photo
-            </div>
-          </div>
         </div>
 
         <div>
@@ -160,7 +170,7 @@ function Founder() {
             The founder
           </p>
           {/* Use the Al Zaina display font for the founder's name, per brand guidelines */}
-          <h2 className="font-serif text-[40px] italic leading-tight text-[#431F0F] sm:text-5xl">
+          <h2 className="font-serif text-[40px] font-bold italic leading-tight text-[#431F0F] sm:text-5xl">
             Sadiya Mukhtar
           </h2>
           <p className="mt-4 text-[#431F0F]/90">
@@ -173,7 +183,7 @@ function Founder() {
           </p>
           <a
             href="/contact"
-            className="mt-7 inline-block rounded bg-[#431F0F] px-7 py-3 text-[15px] font-semibold text-[#F2B35B] hover:bg-[#5a2c17]"
+            className="mt-7 inline-block rounded bg-[#431F0F] px-7 py-3 text-[15px] font-semibold text-[#FFFF] hover:bg-[#5a2c17]"
           >
             Get in touch
           </a>
@@ -200,7 +210,7 @@ function ContactStrip() {
           </div>
           <a
             href="/contact"
-            className="w-full rounded bg-[#431F0F] px-7 py-3.5 text-center text-[15px] font-semibold text-[#F2B35B] hover:bg-[#5a2c17] sm:w-auto"
+            className="w-full rounded bg-[#431F0F] px-7 py-3.5 text-center text-[15px] font-semibold text-[#FFFF] hover:bg-[#5a2c17] sm:w-auto"
           >
             Contact us
           </a>

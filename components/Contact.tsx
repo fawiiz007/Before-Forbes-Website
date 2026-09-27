@@ -13,6 +13,7 @@ import { useState, type FormEvent } from "react";
 import Navbar from "./layout/Navbar";
 import Footer from "./layout/Footer";
 
+
 const ASSETS = {
   logoHorizontal: "/logo.png",
   pattern: "/assets/brand-pattern.svg",
@@ -58,7 +59,7 @@ function Hero() {
           <h1 className="text-[38px] font-bold leading-tight text-[#F2B35B] sm:text-5xl md:text-6xl">
             Let&apos;s talk.
           </h1>
-          <p className="mt-6 text-base text-[#F2B35B]/90 sm:text-lg">
+          <p className="mt-6 text-base text-[#FBF3E4]/80 sm:text-lg">
             Send us a message and we&apos;ll get back to you.
           </p>
         </div>
@@ -80,7 +81,7 @@ function ContactFormAndDetails() {
     <section className="bg-[#F2C372] py-16 md:py-24">
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-start gap-8 px-5 sm:px-8 md:grid-cols-2 md:gap-14 lg:px-10">
         <div className="rounded-lg bg-white p-7 sm:p-10">
-          <h3 className="mb-6 text-xl font-semibold text-[#431F0F]">
+          <h3 className="mb-6 text-xl font-semibold text-[#FFFFF]">
             Send a message
           </h3>
           <form onSubmit={handleSubmit} className="grid gap-3.5">
@@ -110,7 +111,7 @@ function ContactFormAndDetails() {
             />
             <button
               type="submit"
-              className="rounded bg-[#431F0F] px-8 py-3.5 text-center text-[15px] font-semibold text-[#F2B35B] hover:bg-[#5a2c17]"
+              className="rounded bg-[#431F0F] px-8 py-3.5 text-center text-[15px] font-semibold text-[#FFFF] hover:bg-[#5a2c17]"
             >
               Send message
             </button>
@@ -120,8 +121,8 @@ function ContactFormAndDetails() {
         <div className="grid gap-5">
           {CONTACT_DETAILS.map((detail) => {
             const content = (
-              <div className="rounded-md bg-[#431F0F] px-6 py-5 text-[#F2B35B]">
-                <span className="mb-1 block text-xs font-semibold uppercase tracking-[0.14em] text-[#C27E37]">
+              <div className="rounded-md px-6 py-5 text-[#431F0F]">
+                <span className="mb-1 block text-xs font-bold uppercase tracking-[0.14em] text-[#431F0F]">
                   {detail.label}
                 </span>
                 <span className="text-[15px]">{detail.value}</span>
